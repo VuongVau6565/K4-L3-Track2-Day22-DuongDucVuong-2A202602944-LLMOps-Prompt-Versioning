@@ -61,9 +61,46 @@ def build_vectorstore(chunks: list, embeddings):
     Returns:
         FAISS vectorstore đã được index và sẵn sàng dùng để retrieve
     """
+    import time
+    from pathlib import Path
     from langchain_community.vectorstores import FAISS
 
+    index_dir = Path(__file__).parent.parent.parent / "data" / "faiss_index"
+    if (index_dir / "index.faiss").exists():
+        try:
+            print(f"[INFO] Loading cached FAISS index from {index_dir}...")
+            return FAISS.load_local(str(index_dir), embeddings, allow_dangerous_deserialization=True)
+        except Exception as e:
+            print(f"[WARN] Could not load cached index: {e}, rebuilding...")
+
     print(f"[INFO] Building FAISS index from {len(chunks)} chunks...")
-    vectorstore = FAISS.from_texts(chunks, embeddings)
+    batch_size = 40
+    vectorstore = None
+    for i in range(0, len(chunks), batch_size):
+        batch = chunks[i:i + batch_size]
+        print(f"  [INFO] Embedding chunks {i+1} to {min(i+batch_size, len(chunks))}...")
+        for attempt in range(5):
+            try:
+                if vectorstore is None:
+                    vectorstore = FAISS.from_texts(batch, embeddings)
+                else:
+                    vectorstore.add_texts(batch)
+                break
+            except Exception as e:
+                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                    print("  [WARN] Rate limited (429). Waiting 35s before retry...")
+                    time.sleep(35)
+                else:
+                    raise e
+        time.sleep(2)
+
+    try:
+        index_dir.mkdir(parents=True, exist_ok=True)
+        vectorstore.save_local(str(index_dir))
+        print(f"[INFO] Saved FAISS index to {index_dir}")
+    except Exception as e:
+        print(f"[WARN] Could not save index to disk: {e}")
+
     print("[OK] FAISS vectorstore ready.")
     return vectorstore
+

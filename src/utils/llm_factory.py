@@ -77,6 +77,7 @@ def get_llm(provider: str = None, temperature: float = 0.0):
             api_key=config.OPENROUTER_API_KEY,
             base_url=config.OPENROUTER_BASE_URL,
             temperature=temperature,
+            max_tokens=1000,
         )
 
     else:
@@ -107,12 +108,19 @@ def get_embeddings(provider: str = None):
 
     if provider in ("openai", "openrouter"):
         from langchain_openai import OpenAIEmbeddings
-        kwargs = {
-            "model": config.OPENAI_EMBEDDING_MODEL,
-            "api_key": config.OPENAI_API_KEY,
-        }
-        if config.OPENAI_BASE_URL:
-            kwargs["base_url"] = config.OPENAI_BASE_URL
+        if provider == "openrouter":
+            kwargs = {
+                "model": "text-embedding-3-small",
+                "api_key": config.OPENROUTER_API_KEY,
+                "base_url": config.OPENROUTER_BASE_URL,
+            }
+        else:
+            kwargs = {
+                "model": config.OPENAI_EMBEDDING_MODEL,
+                "api_key": config.OPENAI_API_KEY,
+            }
+            if config.OPENAI_BASE_URL:
+                kwargs["base_url"] = config.OPENAI_BASE_URL
         return OpenAIEmbeddings(**kwargs)
 
     elif provider == "gemini":
