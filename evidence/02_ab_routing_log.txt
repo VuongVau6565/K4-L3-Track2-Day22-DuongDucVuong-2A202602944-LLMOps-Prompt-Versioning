@@ -1,0 +1,60 @@
+============================================================
+  Step 2: Prompt Hub & A/B Routing
+============================================================
+CONFIG OK  |  Provider: OLLAMA  |  Project: day22-lab
+[WARN] V1 error: Client.push_prompt() takes 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+[WARN] V2 error: Client.push_prompt() takes 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+[INFO] Using local fallback for 'duongducvuong-rag-prompt-v1'
+[INFO] Using local fallback for 'duongducvuong-rag-prompt-v2'
+[INFO] Building FAISS index from 107 chunks...
+[OK] FAISS vectorstore ready.
+[01] [prompt-v2] What are the three main types of machine learning?à
+[02] [prompt-v2] What is overfitting in machine learning?à
+[03] [prompt-v1] Explain the bias-variance tradeoff.à
+[04] [prompt-v1] How does regularization prevent overfitting?à
+[05] [prompt-v2] What is cross-validation?à
+[06] [prompt-v2] What is backpropagation?à
+[07] [prompt-v2] What are Convolutional Neural Networks primarily used fà
+[08] [prompt-v2] How do LSTM networks address the vanishing gradient proà
+[09] [prompt-v1] What activation functions are commonly used in neural nà
+[10] [prompt-v2] What is the role of pooling layers in CNNs?à
+[11] [prompt-v1] What is the transformer architecture?à
+[12] [prompt-v1] What are word embeddings?à
+[13] [prompt-v2] What is transfer learning in NLP?à
+[14] [prompt-v1] How does BERT handle language understanding?à
+[15] [prompt-v2] What is self-attention in transformers?à
+[16] [prompt-v1] What is GPT and how is it trained?à
+[17] [prompt-v2] What is instruction tuning?à
+[18] [prompt-v2] What is RLHF?à
+[19] [prompt-v1] What is chain-of-thought prompting?à
+[20] [prompt-v2] What is the context length of GPT-4?à
+[21] [prompt-v1] What is Retrieval-Augmented Generation?à
+[22] [prompt-v1] What are the main components of a RAG pipeline?à
+[23] [prompt-v2] What is dense retrieval?à
+[24] [prompt-v1] Why is chunking strategy important in RAG?à
+[25] [prompt-v2] What advanced RAG techniques exist beyond basic retrievà
+[26] [prompt-v1] What are vector databases used for?à
+[27] [prompt-v2] What is FAISS?à
+[28] [prompt-v2] How do text embeddings capture semantic meaning?à
+[29] [prompt-v2] What is HNSW?à
+[30] [prompt-v2] What is hybrid search in vector databases?à
+[31] [prompt-v2] What is LangChain?à
+[32] [prompt-v2] What is LangChain Expression Language (LCEL)?à
+[33] [prompt-v1] What is LangGraph?à
+[34] [prompt-v2] What memory types does LangChain support?à
+[35] [prompt-v1] What are LangChain retrievers?à
+[36] [prompt-v2] What is LangSmith?à
+[37] [prompt-v2] What information do LangSmith traces capture?à
+[38] [prompt-v1] What is the LangSmith Prompt Hub?à
+[39] [prompt-v2] How does LangSmith help monitor production LLM applicatà
+[40] [prompt-v2] What are LangSmith datasets used for?à
+[41] [prompt-v2] What is RAGAS?à
+[42] [prompt-v1] How does RAGAS compute faithfulness?à
+[43] [prompt-v2] What is answer relevancy in RAGAS?à
+[44] [prompt-v2] What is context recall in RAGAS?à
+[45] [prompt-v1] What inputs does RAGAS evaluation require?à
+[46] [prompt-v2] What is Guardrails AI?à
+[47] [prompt-v1] What is PII and why is it important to detect in LLM reà
+[48] [prompt-v1] What does structured output validation ensure?à
+[49] [prompt-v2] What is Constitutional AI?à
+[50] [prompt-v2] What are common AI safety concerns with LLMs?à

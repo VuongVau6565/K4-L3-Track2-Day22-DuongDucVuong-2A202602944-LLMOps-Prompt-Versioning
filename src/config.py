@@ -73,13 +73,13 @@ def validate() -> bool:
     # Ollama: không cần API key
 
     if missing:
-        print("⚠️  Thiếu biến môi trường:")
+        print("WARNING: Missing environment variables:")
         for m in missing:
             print(f"   - {m}")
         print("   Hãy kiểm tra file .env của bạn (xem .env.example để biết thêm).")
         return False
 
-    print(f"✅ Config OK  |  Provider: {PROVIDER.upper()}  |  Project: {LANGSMITH_PROJECT}")
+    print(f"CONFIG OK  |  Provider: {PROVIDER.upper()}  |  Project: {LANGSMITH_PROJECT}")
     return True
 
 
